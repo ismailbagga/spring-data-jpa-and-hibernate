@@ -5,10 +5,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
+@Table(name = "Course") // change name of table that entity mapped to by default entity <Name> mapped to <name> table
+// ! letter case of name in table is automatically transifred ex = name='CourseDetails' mapped to table course_details table
 @Entity
 @NoArgsConstructor
 @Getter()
