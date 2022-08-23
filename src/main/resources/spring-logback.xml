@@ -1,0 +1,6 @@
+<configuration>
+    <include resources="org.springframework.boot.logging.logback.base.xml"/>
+
+<!--    <logger name="org.springframework.jdbc"/>-->
+    <logger name="com.courses.hibernateandjpa" level="INFO"/>
+</configuration>
