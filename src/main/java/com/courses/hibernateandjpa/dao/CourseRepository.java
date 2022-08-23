@@ -33,23 +33,21 @@ public class CourseRepository {
     }
 
     public void playWithEntityManager() {
-            log.info("Playing Around with Entity manager");
+        log.info("Playing Around with Entity manager");
 
-            var em = getEntityManager() ;
-            var tr =  em.getTransaction() ;
-            tr.begin();
-            var course1 = new Course("Spring Data JPA") ;
-            em.persist(course1) ;
-            var course2 = new Course("Angular Js") ;
-            em.persist(course2) ;
-            em.flush();
-
-//            em.clear();
-        em.detach(course2); // Entity manager is no longer track course 2
-
+        var em = getEntityManager() ;
+        var tr =  em.getTransaction() ;
+        tr.begin();
+        var course1 = new Course("Spring Data JPA") ;
+        em.persist(course1) ;
+        var course2 = new Course("Angular Js") ;
+        em.persist(course2) ;
+//        em.flush();
+//        em.detach(course2);
         course1.setName(" Jpa Essentials");
         course2.setName("Angular");
-            tr.commit();
+        em.refresh(course2);
+        tr.commit();
 
 
     }
