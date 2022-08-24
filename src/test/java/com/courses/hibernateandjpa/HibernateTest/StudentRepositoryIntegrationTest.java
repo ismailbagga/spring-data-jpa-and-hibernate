@@ -27,5 +27,10 @@ public class StudentRepositoryIntegrationTest {
         studentRepository.saveStudentWithPassport();
 
     }
+    @Test
+    public void eagerFetchingStudent() {
+        studentRepository.saveStudentWithPassport();
+        studentRepository.studentEagerFetch();
+    }
 
 }

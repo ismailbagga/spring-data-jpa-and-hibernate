@@ -33,6 +33,13 @@ public class StudentRepository {
         em.getTransaction().commit();
 
      }
+     public void studentEagerFetch() {
+         var em  = getEntityManager() ;
+
+         var student = em.find(Student.class,1L) ;
+         log.info("student -> {}",student);
+         log.info("student passport -> {}",student.getPassport());
+     }
 
 
     public Student findById(Long id) {
