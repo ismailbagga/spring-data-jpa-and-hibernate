@@ -1,5 +1,6 @@
 package com.courses.hibernateandjpa.repositories ;
 
+import com.courses.hibernateandjpa.entities.Passport;
 import com.courses.hibernateandjpa.entities.Student;
 import com.courses.hibernateandjpa.entities.Student;
 import lombok.extern.slf4j.Slf4j;
@@ -17,6 +18,22 @@ public class StudentRepository {
 
     @Autowired
     EntityManagerFactory entityManagerFactory ;
+
+
+    public void  saveStudentWithPassport() {
+        Passport passport = new Passport("2156") ;
+        Student student = new Student("Jamie") ;
+        student.setPassport(passport);
+        var em  = getEntityManager() ;
+        em.getTransaction().begin();
+
+        em.persist(passport);
+        em.persist(student) ;
+
+        em.getTransaction().commit();
+
+     }
+
 
     public Student findById(Long id) {
         return getEntityManager().find(Student.class,id)  ;

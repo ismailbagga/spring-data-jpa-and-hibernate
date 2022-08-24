@@ -19,6 +19,10 @@ public class Student {
   @OneToOne
   private Passport passport ;
 
+  public Student(String name) {
+    this.name = name;
+  }
+
   public Student(String name , Passport passport) {
     this.name = name;
     this.passport = passport ;
