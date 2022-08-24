@@ -14,7 +14,8 @@ public class Student {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
   private String name;
-  @OneToOne
+  @OneToOne(fetch = FetchType.LAZY)
+  @ToString.Exclude
   private Passport passport ;
 
   public Student(String name) {

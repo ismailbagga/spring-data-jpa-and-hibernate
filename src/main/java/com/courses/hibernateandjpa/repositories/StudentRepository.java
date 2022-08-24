@@ -33,12 +33,17 @@ public class StudentRepository {
         em.getTransaction().commit();
 
      }
-     public void studentEagerFetch() {
+     public void studentLazyFetch() {
          var em  = getEntityManager() ;
 
+         em.getTransaction().begin();
          var student = em.find(Student.class,1L) ;
          log.info("student -> {}",student);
          log.info("student passport -> {}",student.getPassport());
+         log.info("student passport again -> {}",student.getPassport());
+         em.getTransaction().commit();
+
+
      }
 
 

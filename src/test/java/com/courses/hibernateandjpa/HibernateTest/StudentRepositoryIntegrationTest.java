@@ -28,9 +28,9 @@ public class StudentRepositoryIntegrationTest {
 
     }
     @Test
-    public void eagerFetchingStudent() {
+    public void lazyFetchingStudent() {
         studentRepository.saveStudentWithPassport();
-        studentRepository.studentEagerFetch();
+        studentRepository.studentLazyFetch();
     }
 
 }
