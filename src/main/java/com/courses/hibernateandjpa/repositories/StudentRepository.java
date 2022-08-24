@@ -1,4 +1,4 @@
-package com.courses.hibernateandjpa.repositories ;
+package com.courses.hibernateandjpa.repositories;
 
 import com.courses.hibernateandjpa.entities.Passport;
 import com.courses.hibernateandjpa.entities.Student;

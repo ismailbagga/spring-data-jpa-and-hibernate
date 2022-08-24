@@ -1,7 +1,7 @@
 package com.courses.hibernateandjpa.HibernateTest;
 
 
-import com.courses.hibernateandjpa.dao.CourseRepository;
+import com.courses.hibernateandjpa.repositories.CourseRepository;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -15,7 +15,7 @@ import org.springframework.test.annotation.DirtiesContext;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 @DataJpaTest
-@ComponentScan(basePackages = "com.courses.hibernateandjpa.dao")
+@ComponentScan(basePackages = "com.courses.hibernateandjpa.repositories")
 @TestMethodOrder(value = MethodOrderer.OrderAnnotation.class)
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class CourseRepositoryIntegrationTest {
@@ -23,6 +23,11 @@ public class CourseRepositoryIntegrationTest {
     @Autowired
     CourseRepository courseRepository ;
 
+    @Test
+    void saveCourseWithReview() {
+        courseRepository.saveCourseWithMultipleReviews();
+        
+    }
 
     @Test()
     void findCourseById() {

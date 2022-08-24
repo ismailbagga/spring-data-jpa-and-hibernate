@@ -19,7 +19,7 @@ public class Passport {
 
 
     @ToString.Exclude
-    @OneToOne(mappedBy = "passport")
+    @OneToOne()
     private  Student student ;
 
     public Passport(String number) {
