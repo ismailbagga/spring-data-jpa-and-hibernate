@@ -15,24 +15,5 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 @ActiveProfiles("default")
 class HibernateAndJpaApplicationTests {
 
-	@Autowired
-	PersonDao personDao ;
-
-	@Test
-	void  savePersonTest() {
-		Person person = new Person("Mike","New York", LocalDate.now()) ;
-		personDao.savePerson(person) ;
-		assertThat(person.getId()).isNotNull() ;
-	}
-
-	@Test
-	void findPersonByIdTest() {
-		Person person = new Person("Mike","New York", LocalDate.now()) ;
-		personDao.savePerson(person) ;
-		Long id = person.getId() ;
-		assertThat(personDao.findById(id)).isNotNull() ;
-
-
-	}
 
 }
