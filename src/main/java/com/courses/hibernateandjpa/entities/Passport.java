@@ -17,8 +17,10 @@ public class Passport {
 
     private String number  ;
 
-//    @OneToOne
-//    private  Student student ;
+
+    @ToString.Exclude
+    @OneToOne(mappedBy = "passport")
+    private  Student student ;
 
     public Passport(String number) {
         this.number = number;

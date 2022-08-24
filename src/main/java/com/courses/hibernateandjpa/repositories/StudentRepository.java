@@ -33,6 +33,19 @@ public class StudentRepository {
         em.getTransaction().commit();
 
      }
+     public  void getPassportWithStudent() {
+        var em = getEntityManager() ;
+        em.getTransaction().begin();
+        Passport passport = em.find(Passport.class,1L) ;
+        log.info("passport -> {}",passport);
+         log.info("Pausing ...");
+        log.info("student of passport -> {}",passport.getStudent());
+
+        em.getTransaction().commit();
+
+
+
+     }
      public void studentLazyFetch() {
          var em  = getEntityManager() ;
 
@@ -41,10 +54,7 @@ public class StudentRepository {
          log.info("student -> {}",student);
          log.info("student passport -> {}",student.getPassport());
          log.info("student passport again -> {}",student.getPassport());
-         em.getTransaction().commit();
-
-
-     }
+         em.getTransaction().commit();}
 
 
     public Student findById(Long id) {
