@@ -1,5 +1,6 @@
 package com.courses.hibernateandjpa.repositories;
 
+import com.courses.hibernateandjpa.entities.Course;
 import com.courses.hibernateandjpa.entities.Passport;
 import com.courses.hibernateandjpa.entities.Student;
 import com.courses.hibernateandjpa.entities.Student;
@@ -11,6 +12,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
+import java.util.List;
 
 @Repository
 @Slf4j
@@ -18,6 +20,22 @@ public class StudentRepository {
 
     @Autowired
     EntityManagerFactory entityManagerFactory ;
+
+
+    public void  saveStudentWithCourses() {
+        Course course   = new Course("2156") ;
+        Student student = new Student("Jamie") ;
+//        course.setStudents(List.of(student));
+        var em  = getEntityManager() ;
+        em.getTransaction().begin();
+
+
+        em.persist(course);
+        student.setCourses(List.of(course));
+//        em.persist(student);
+        em.getTransaction().commit();
+
+    }
 
 
     public void  saveStudentWithPassport() {
@@ -32,7 +50,7 @@ public class StudentRepository {
 
         em.getTransaction().commit();
 
-     }
+    }
      public  void getPassportWithStudent() {
         var em = getEntityManager() ;
         em.getTransaction().begin();

@@ -20,11 +20,6 @@ public class DataInitializer implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        courseRepository.saveCourse();
-
-       courseRepository.saveCourseWithMultipleReviews();
-
-       courseRepository.saveMore();
-
+       studentRepository.saveStudentWithCourses();
     }
 }

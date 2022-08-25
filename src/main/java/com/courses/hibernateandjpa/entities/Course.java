@@ -24,6 +24,13 @@ public class Course {
     private String name ;
     @OneToMany(mappedBy = "course",cascade = CascadeType.PERSIST)
     private Set<Review> reviews ;
+
+    @ManyToMany(mappedBy = "courses")
+    private List<Student> students ;
+
+
+
+
     public Course(String name) {
         this.name = name ;
     }
