@@ -18,8 +18,8 @@ import java.util.Set;
 public class Course {
 
     @Id
-    @GeneratedValue
     @Setter(AccessLevel.NONE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id ;
     private String name ;
     @OneToMany(mappedBy = "course",cascade = CascadeType.PERSIST)
@@ -29,7 +29,13 @@ public class Course {
     private List<Student> students ;
 
 
-
+    @Override
+    public String toString() {
+        return "Course{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
 
     public Course(String name) {
         this.name = name ;

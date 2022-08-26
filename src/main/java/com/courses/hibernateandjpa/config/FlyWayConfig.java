@@ -14,9 +14,8 @@ public class FlyWayConfig {
     public FlywayMigrationStrategy migrateStrategy() {
         return (flyway) -> {
             log.info("cleaning db");
-            flyway.clean() ;
-//            log.info("ignore flyway migration");
-//            flyway.migrate() ;
+//            flyway.clean() ;
+
         } ;
     }
 }
