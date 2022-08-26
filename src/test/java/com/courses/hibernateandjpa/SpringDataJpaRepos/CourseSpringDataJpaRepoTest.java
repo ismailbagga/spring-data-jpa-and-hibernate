@@ -10,8 +10,17 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.domain.Sort;
+import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.annotation.Rollback;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.transaction.Transactional;
 import java.util.List;
+
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.junit.jupiter.api.Assertions.*;
+
 
 @DataJpaTest
 @ComponentScan(basePackages = "com.courses.hibernateandjpa.repositories")
@@ -24,6 +33,8 @@ public class CourseSpringDataJpaRepoTest {
     CourseSpringDataJpaRepo repository;
 
 
+    @Autowired
+    EntityManagerFactory entityManagerFactory ;
 
     void saveCourses() {
         log.info("Before insert");
@@ -32,7 +43,7 @@ public class CourseSpringDataJpaRepoTest {
         var c3 = new Course("Java Essentials");
         var c4 = new Course("Android Development");
         List<Course> courses = List.of(c1, c2, c3,c4);
-        repository.saveAll(courses) ;
+//        repository.saveAll(courses) ;
 
 
     }
@@ -57,6 +68,27 @@ public class CourseSpringDataJpaRepoTest {
         log.info("Course sorted base on name -> {}",repository.findAll(sort1));
         log.info("Course sorted base on id -> {}",repository.findAll(sort2));
 
+
+    }
+    @Test
+    void firstLevelCash() {
+        var temp = entityManagerFactory.createEntityManager() ;
+        temp.getTransaction().begin();
+        temp.persist(new Course("Spring Boot Bootcamp"));
+        temp.getTransaction().commit();
+
+
+
+        var entityManager = entityManagerFactory.createEntityManager() ;
+        entityManager.getTransaction().begin();
+        Course course1 = entityManager.find(Course.class,1L) ;
+        log.info("course first search -> {} ",course1);
+        entityManager.detach(course1);
+        Course course2 = entityManager.find(Course.class,1L) ;
+        log.info("course second search -> {} ",course1);
+
+        assertEquals(course1,course2);
+        entityManager.getTransaction().commit();
 
     }
 
