@@ -15,6 +15,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Getter()
 @Setter()
+@Cacheable(value = true)
 public class Course {
 
     @Id
